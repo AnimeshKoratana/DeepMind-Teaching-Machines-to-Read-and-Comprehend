@@ -51,7 +51,6 @@ class QADataset(Dataset):
         if request is None or state is not None:
             raise ValueError("Expected a request (name of a question file) and no state.")
         
-        print(os.path.join(self.path, request))
         lines = [l.rstrip('\n') for l in open(os.path.join(self.path, request))]
 
         ctx = lines[2]
@@ -73,8 +72,6 @@ class QADataset(Dataset):
         a = numpy.int32(self.to_word_id(a, cand_mapping))
 
         if not a < self.n_entities:
-            print(a)
-            print(self.n_entities)
             raise ValueError("Invalid answer token %d"%a)
         if not numpy.all(cand < self.n_entities):
             raise ValueError("Invalid candidate in list %s"%repr(cand))
