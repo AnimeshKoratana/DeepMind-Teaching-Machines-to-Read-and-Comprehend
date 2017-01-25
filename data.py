@@ -72,6 +72,8 @@ class QADataset(Dataset):
         a = numpy.int32(self.to_word_id(a, cand_mapping))
 
         if not a < self.n_entities:
+            print(a)
+            print(self.n_entities)
             raise ValueError("Invalid answer token %d"%a)
         if not numpy.all(cand < self.n_entities):
             raise ValueError("Invalid candidate in list %s"%repr(cand))
