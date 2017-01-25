@@ -50,7 +50,8 @@ class QADataset(Dataset):
     def get_data(self, state=None, request=None):
         if request is None or state is not None:
             raise ValueError("Expected a request (name of a question file) and no state.")
-
+        
+        print(os.path.join(self.path, request))
         lines = [l.rstrip('\n') for l in open(os.path.join(self.path, request))]
 
         ctx = lines[2]
